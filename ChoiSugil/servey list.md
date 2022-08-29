@@ -1,7 +1,7 @@
 # 자료 조사:
 - - -
 ## Linux server.
-구름 IDE 를 이용한 클라우드 서버 
+구름 IDE 를 이용한 클라우드 서버   
 [구름IDE]:(https://help.goorm.io/ko/goormide/17.various-features/ssh-port-forwarding, "구름")   
 [웹서버]:(https://pascucu.tistory.com/10, "웹서버")   
 
