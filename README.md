@@ -2,7 +2,7 @@
 Team member:
 Choi su gil.
 Sim NUMG gi.
-Bea jung sang.
+Bea JUN sang.
 Jun Dong Hyung.
 
 
