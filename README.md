@@ -1,12 +1,14 @@
 # proj
-Team member:
-Choi su gil.
-Sim NUMG gi.
-Bea JUN sang.
-Jun Dong Hyung.
+- - -
+Team member:   
+- - - 
+Choi su gil.   
+Sim NUMG gi.   
+Bea jung sang.   
+Jun Dong Hyung.   
 
 
 
-hellow my nmae is choi sugil
+# hellow my nmae is choi sugil
 
 project
