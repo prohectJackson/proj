@@ -1,7 +1,7 @@
 # proj
 Team member:
 Choi su gil.
-Sim myung gi.
+Sim NUMG gi.
 Bea jung sang.
 Jun Dong Hyung.
 
