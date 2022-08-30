@@ -57,7 +57,7 @@ int main(void)
 
 	struct sockaddr_in serverAddr;
 	serverAddr.sin_family = AF_INET;
-	serverAddr.sin_addr.s_addr = inet_addr("192.168.35.155");
+	serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
 	serverAddr.sin_port = htons(7000);
 
 	int re;
