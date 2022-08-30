@@ -45,6 +45,9 @@ typedef struct roomPerson{
 * 1personIn 신호 받을 때 room1 증가.
 * 1personOut 신호 받을 때 room2 감소.
 * person.dat 파일을 만들어서 4개의 int 값 저장room1, room2, room3, room4
+- - - 
+* 로그파일에 월 일 시분초 추가.
+* 사람이 없을 때 turn off 추가. 
 
 # 문제점 
 * 서버와 클라이언트 파일이 c 언어로 되어 있음 c++ 로 바꿀려고 했지만, thread 사용 하는 방법이 너무 달라서 C 로 진행 하기로 함.
