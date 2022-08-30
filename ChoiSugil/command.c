@@ -19,17 +19,16 @@ void sCommand(char *buf)
 	fscanf(frperson, "%d %d %d %d", &p1.room1, &p1.room2, &p1.room3, &p1.room4);
 	fclose(frperson);
 
-	// fin = fopen("log.dat", "a+");
-	// if (fin == NULL){
-	// 	fprintf(stdout, "can't open log.dat file\n");
-	// 	exit(1);
-	// }
-	// //datetime
-	// time_t rawtime = time(NULL);
-	// struct tm *ptm = localtime(&rawtime);
-	// fprintf(fin,"month: %02d day: %02d  %02d:%02d:%02d :: %s\n", ptm->tm_mon, ptm->tm_mday,ptm->tm_hour, 
- //        ptm->tm_min, ptm->tm_sec, buf);
-	// fclose(fin);
+	fin = fopen("log.dat", "a+");
+	if (fin == NULL){
+		fprintf(stdout, "can't open log.dat file\n");
+		exit(1);
+	}
+	//datetime
+	time_t rawtime = time(NULL);
+	struct tm *ptm = localtime(&rawtime);
+	fprintf(fin,"month: %02d day: %02d  %02d:%02d:%02d :: %s\n", ptm->tm_mon, ptm->tm_mday,ptm->tm_hour, ptm->tm_min, ptm->tm_sec, buf);
+	fclose(fin);
 
 
 	printf("sCommand excution! : %s\n", buf);
