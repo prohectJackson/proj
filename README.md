@@ -7,8 +7,11 @@ Sim NUMG gi.
 Bea jung sang.   
 Jun Dong Hyung.   
 
+- - - 
+# backend server control.   
+- - -   
 
 
-# hellow my nmae is choi sugil
+# arduino project   
 
 project

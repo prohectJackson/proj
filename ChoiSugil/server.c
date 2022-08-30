@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <arpa/inet.h>
 #include <string.h>
+#include "command.h"
 
 int dataSockets[1000];
 int count;
@@ -26,7 +27,8 @@ void *threadProc(void *arg)
 			exit(5);
 		}
 		buf[nread]='\0';
-		printf("buf: %s\n", buf);
+		printf("\nbuf: %s\n", buf);
+		sCommand(buf);
 		// atonic 하게 만들어야 할 부분. 
 pthread_mutex_lock(&mutex);
 		for (int i=0;i<count;++i){
@@ -105,7 +107,6 @@ pthread_mutex_unlock(&mutex);
 		pthread_t tid;
 		pthread_create(&tid, NULL, threadProc, (void *)&dataSocket);
 		pthread_detach(tid);	// 좀비 쓰레드 없애기.
-
 	}
 	
 
