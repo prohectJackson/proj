@@ -30,12 +30,12 @@
 - - - 
 * 인원수 저장용 struct person 만듬.
 <code>
-typedef struct roomPerson{
-	int room1;
-	int room2;
-	int room3;
-	int room4;
-} Person;
+typedef struct roomPerson{   
+	int room1;   
+	int room2;   
+	int room3;   
+	int room4;   
+} Person;   
 </code>
 
 * 1personIn 신호 받을 때 room1 증가.
