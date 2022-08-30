@@ -27,6 +27,18 @@
 * 파일 로그 저장 추가
 * 명령어 저장 : "1personIn"
 * 명령어 저장 : "1personOut"
+- - - 
+* 인원수 저장용 struct person 만듬.
+<code>
+typedef struct roomPerson{
+	int room1;
+	int room2;
+	int room3;
+	int room4;
+} Person;
+</code>
+
+* 1personIn 신호 받을 때 room1 증가.
 
 # 문제점 
 * 서버와 클라이언트 파일이 c 언어로 되어 있음 c++ 로 바꿀려고 했지만, thread 사용 하는 방법이 너무 달라서 C 로 진행 하기로 함.
