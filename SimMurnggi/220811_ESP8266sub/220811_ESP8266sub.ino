@@ -1,5 +1,6 @@
 #include <doxygen.h>
 #include <ESP8266.h>
+#include <string.h>
 
 #include "ESP8266.h" // ESP8266 라이브러리 헤더파일 
 #include <SoftwareSerial.h>// 소프트웨어 시리얼 
@@ -7,7 +8,6 @@
 #define PASSWORD    "12345678"    // 공유기 비밀번호 
 #define HOST_NAME   "13.125.217.249"     // 서버 IP
 #define HOST_PORT   (59581)            // 서버 포트 
-//#define HOST_PORT   (7000)            // 서버 포트 
 
 SoftwareSerial mySerial(10, 9); /* RX:D10, TX:D9 */
 ESP8266 wifi(mySerial); // ESP01 -시리얼 
@@ -16,9 +16,15 @@ const int tpin1=5;
 const int epin1=4;
 const int tpin2=3;
 const int epin2=2;
+const int LED = 13;
+long du1;
+long du2;
+long time = millis();
+
 
 
 void setup() {
+pinMode(LED, OUTPUT);    digitalWrite(LED,LOW);
 pinMode(tpin1, OUTPUT);
 pinMode(epin1, INPUT);
 pinMode(tpin2, OUTPUT);
@@ -51,40 +57,55 @@ Serial.begin(9600); // 통신속도
                 Serial.print("create tcp err\r\n"); //에러출력 
             }
         }
-    } 
-    
+    }     
 }
 
 void loop() {
     uint8_t buffer[128] = {0};
-    uint32_t len = wifi.recv(buffer, sizeof(buffer), 10000);
-    if(len > 0){ //수신 데이터가 존재한다면 
-      Serial.print("Received : [");
+    digitalWrite(tpin1, LOW);
+    delayMicroseconds(10);
+    digitalWrite(tpin1, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(tpin1, LOW);
+    du1 = pulseIn(epin1,HIGH);
+    Serial.println(du1);
+    
+    digitalWrite(tpin2, LOW);
+    delayMicroseconds(10);
+    digitalWrite(tpin2, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(tpin2, LOW);
+    du2 = pulseIn(epin2,HIGH);
+    Serial.println(du2);
+
+    delay(100);
+    buffer[128] = {0};
+    uint32_t len = wifi.recv(buffer, sizeof(buffer), 100);
+ 
+    if(len > 0){ //수신 데이터가 존재한다면
       for(uint32_t i = 0; i < len; i++){
         Serial.print((char)buffer[i]); // recv 데이터 시리얼모니터에 출력 
-      }
-      Serial.print("]\r\n");
-      char command = buffer[0]; // 버퍼의 첫자리를 command로 
-      if(command == 'A'){  // 커맨드 A 보낼시 String형 서버로 전송 
-        char str_msg[] = "ONE";
-        sprintf(buffer, "%s", str_msg); // Sprintf 버퍼에 데이터 저장 
-        wifi.send(buffer, strlen(buffer)); // 서버로 전송 
+       
       }
     }
-    else if(Serial.available()){    
-      char data;
-      data = Serial.read();
-      if(data == 'a') {
-        char command = buffer[0]; // 버퍼의 첫자리를 command로 
-        char str_msg[] = "1personIn";
-        sprintf(buffer, "%s", str_msg); // Sprintf 버퍼에 데이터 저장 
-        wifi.send(buffer, strlen(buffer)); // 서버로 전송 
-      }
-      else if(data == 'b') {
-        char command = buffer[0]; // 버퍼의 첫자리를 command로 
-        char str_msg[] = "1personOut";
-        sprintf(buffer, "%s", str_msg); // Sprintf 버퍼에 데이터 저장 
-        wifi.send(buffer, strlen(buffer)); // 서버로 전송 
-      }
+    
+     if(!strcmp(buffer, "1ledOn")){
+      digitalWrite(LED,HIGH);
+    }
+    if(!strcmp(buffer, "1turnOff")){  // 커맨드 A 보낼시 String형 서버로 전송 
+      digitalWrite(LED,LOW);
+    }
+      
+   if(du1 < 1000 && time+5000 < millis()) {
+      char str_msg[] = "1personIn";
+      sprintf(buffer, "%s", str_msg);
+      wifi.send(buffer, strlen(buffer));
+      time = millis() ;
+    }
+    else if(du2 < 1000 && time+5000 < millis()) {
+      char str_msg[] = "1personOut";
+      sprintf(buffer, "%s", str_msg); // Sprintf 버퍼에 데이터 저장 
+      wifi.send(buffer, strlen(buffer)); // 서버로 전송 
+      time = millis() ;
     }
 }

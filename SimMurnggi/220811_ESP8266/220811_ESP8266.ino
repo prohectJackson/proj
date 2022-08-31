@@ -5,7 +5,7 @@
 #include <SoftwareSerial.h>// 소프트웨어 시리얼 
 #define SSID        "iptime"        // 공유기 SSID 
 #define PASSWORD    "12345678"    // 공유기 비밀번호 
-#define HOST_NAME   "3.39.152.203"     // 서버 IP
+#define HOST_NAME   "10.10.11.51"     // 서버 IP
 //#define HOST_NAME   "255.255.255.0"     // 서버 IP
 //#define HOST_NAME   "10.10.11.254"     // 서버 IP
 #define HOST_PORT   (58056)            // 서버 포트 
