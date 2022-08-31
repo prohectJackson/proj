@@ -28,40 +28,107 @@ void *threadProc(void *arg)
 		}
 		buf[nread]='\0';
 		printf("\nbuf: %s\n", buf);
-		char tbuf[1024];
-		strncpy(tbuf, buf, 15);
-		printf("tbuf : %s\n", tbuf);
-		char *temp;
+		// char tbuf[1024];
+		// strncpy(tbuf, buf, 15);
+		// printf("tbuf : %s\n", tbuf);
+		// char temp[1024];
+		// strcpy(temp, buf);
 		if(strstr(buf, "1personIn"))
-			temp = strstr(buf, "1personIn");
+		{
+			strcpy(buf, "1personIn");
+			buf[9]='\0';
+		}
 		if(strstr(buf, "1personOut"))
-			temp = strstr(buf, "1personOut");
+		{
+			strcpy(buf, "1personOut");
+			buf[10]='\0';
+		}
 		
 		if(strstr(buf, "2personIn"))
-			temp = strstr(buf, "2personIn");
+		{
+			strcpy(buf, "2personIn");
+			buf[9]='\0';
+		}
 		if(strstr(buf, "2personOut"))
-			temp = strstr(buf, "2personOut");
+		{
+			strcpy(buf, "2personOut");
+			buf[10]='\0';
+		}
 		
 		if(strstr(buf, "3personIn"))
-			temp = strstr(buf, "3personIn");
+		{
+			strcpy(buf, "3personIn");
+			buf[9]='\0';
+		}
 		if(strstr(buf, "3personOut"))
-			temp = strstr(buf, "3personOut");
+		{
+			strcpy(buf, "3personOut");
+			buf[10]='\0';
+		}
 
 		if(strstr(buf, "4personIn"))
-			temp = strstr(buf, "4personIn");
-		if(strstr(buf, "4personOut"))
-			temp = strstr(buf, "4personOut");
-		
-		sCommand(temp);
-		
-		if( !strcmp(tbuf, " PUT / HTTP/1.1")){
-			char *temp= strstr(buf, "1personIn");
-			printf(" strstr : %s", temp);
-			sCommand(temp);
-			printf("HTTP IN\n");
-			strcpy(buf,  "HTTP/1.1 200 OK\r\n");
+		{
+			strcpy(buf, "4personIn");
+			buf[9]='\0';
 		}
+		if(strstr(buf, "4personOut"))
+		{
+			strcpy(buf, "4personOut");
+			buf[10]='\0';
+		}
+		
+		if(strstr(buf, "1turnOff"))
+		{
+			strcpy(buf, "1turnOff");
+			buf[8]='\0';
+		}
+		if(strstr(buf, "2turnOff"))
+		{
+			strcpy(buf, "2turnOff");
+			buf[8]='\0';
+		}
+		if(strstr(buf, "3turnOff"))
+		{
+			strcpy(buf, "3turnOff");
+			buf[8]='\0';
+		}
+		if(strstr(buf, "4turnOff"))
+		{
+			strcpy(buf, "4turnOff");
+			buf[8]='\0';
+		}
+
+		if(strstr(buf, "1ledOn"))
+		{
+			strcpy(buf, "1ledOn");
+			buf[6]='\0';
+		}
+		if(strstr(buf, "2ledOn"))
+		{
+			strcpy(buf, "2ledOn");
+			buf[6]='\0';
+		}
+		if(strstr(buf, "3ledOn"))
+		{
+			strcpy(buf, "3ledOn");
+			buf[6]='\0';
+		}
+		if(strstr(buf, "4ledOn"))
+		{
+			strcpy(buf, "4ledOn");
+			buf[6]='\0';
+		}
+		// temp[strlen(temp)] = '\0';
 		sCommand(buf);
+		
+		// if( !strcmp(tbuf, " PUT / HTTP/1.1")){
+		// 	char *temp= strstr(buf, "1personIn");
+		// 	printf(" strstr : %s", temp);
+		// 	sCommand(temp);
+		// 	printf("HTTP IN\n");
+		// 	strcpy(buf,  "HTTP/1.1 200 OK\r\n");
+		// }
+		// sCommand(buf);
 		// atonic 하게 만들어야 할 부분. 
 pthread_mutex_lock(&mutex);
 		for (int i=0;i<count;++i){
