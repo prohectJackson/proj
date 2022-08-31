@@ -18,6 +18,7 @@ void *threadProc(void *arg)
 	int dataSocket = *(int *)arg;
 
 	char buf[1024];
+	char temp[1024];
 	int nread;
 	int cnt =0;
 	while ((nread = read(dataSocket, buf, 1024))> 0){
@@ -31,8 +32,6 @@ void *threadProc(void *arg)
 		// char tbuf[1024];
 		// strncpy(tbuf, buf, 15);
 		// printf("tbuf : %s\n", tbuf);
-		// char temp[1024];
-		// strcpy(temp, buf);
 		if(strstr(buf, "1personIn"))
 		{
 			strcpy(buf, "1personIn");
@@ -118,7 +117,6 @@ void *threadProc(void *arg)
 			strcpy(buf, "4ledOn");
 			buf[6]='\0';
 		}
-		// temp[strlen(temp)] = '\0';
 		sCommand(buf);
 		
 		// if( !strcmp(tbuf, " PUT / HTTP/1.1")){
