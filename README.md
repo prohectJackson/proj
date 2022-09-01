@@ -11,13 +11,8 @@ Jun Dong Hyung.
 # backend server control.   
 - - -   
 
-
-# arduino project   
-
-project
-
 - - -
-## Linux server.
+# Linux server.
 - - - 
 구름 IDE 를 이용한 클라우드 서버   
 [구름IDE]:(https://help.goorm.io/ko/goormide/17.various-features/ssh-port-forwarding, "구름")   
@@ -89,3 +84,20 @@ typedef struct roomPerson{
 * 서버를 안정적으로 종료 되는 코드가 없음.
 * 각 방에 서버에서 나가는 코드가 모든 방에 나가게 됨. 특정 메세지가 특정 방에만 보내게 변경 해야 함.
 * Wifi module 이 간혹가다가 정상 작동 됨. 
+
+
+#아두이노쪽 개발과정
+- - -
+## 와이파이
+* 서버에 연결
+   * 완료x
+   * 아직도 될떄있구 안될떄있음
+* 시리얼 입력값에 따른 출력
+   * 시간지연 해결하기
+* 초음파센서
+   * 데이터값 정제, 조건 넣기
+* led
+   * 서버에서 turnOff값을받아 led 끄기
+- - -
+* led
+   * 서버에서 turnOff값을받아 led 끄기
