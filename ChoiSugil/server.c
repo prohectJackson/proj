@@ -12,6 +12,94 @@ int dataSockets[1000];
 int count;
 
 pthread_mutex_t mutex;
+void httpToCommand(char *buf)
+{
+	if(strstr(buf, "1personIn"))
+	{
+		strcpy(buf, "1personIn");
+		buf[9]='\0';
+	}
+	if(strstr(buf, "1personOut"))
+	{
+		strcpy(buf, "1personOut");
+		buf[10]='\0';
+	}
+	
+	if(strstr(buf, "2personIn"))
+	{
+		strcpy(buf, "2personIn");
+		buf[9]='\0';
+	}
+	if(strstr(buf, "2personOut"))
+	{
+		strcpy(buf, "2personOut");
+		buf[10]='\0';
+	}
+	
+	if(strstr(buf, "3personIn"))
+	{
+		strcpy(buf, "3personIn");
+		buf[9]='\0';
+	}
+	if(strstr(buf, "3personOut"))
+	{
+		strcpy(buf, "3personOut");
+		buf[10]='\0';
+	}
+
+	if(strstr(buf, "4personIn"))
+	{
+		strcpy(buf, "4personIn");
+		buf[9]='\0';
+	}
+	if(strstr(buf, "4personOut"))
+	{
+		strcpy(buf, "4personOut");
+		buf[10]='\0';
+	}
+	
+	if(strstr(buf, "1turnOff"))
+	{
+		strcpy(buf, "1turnOff");
+		buf[8]='\0';
+	}
+	if(strstr(buf, "2turnOff"))
+	{
+		strcpy(buf, "2turnOff");
+		buf[8]='\0';
+	}
+	if(strstr(buf, "3turnOff"))
+	{
+		strcpy(buf, "3turnOff");
+		buf[8]='\0';
+	}
+	if(strstr(buf, "4turnOff"))
+	{
+		strcpy(buf, "4turnOff");
+		buf[8]='\0';
+	}
+
+	if(strstr(buf, "1ledOn"))
+	{
+		strcpy(buf, "1ledOn");
+		buf[6]='\0';
+	}
+	if(strstr(buf, "2ledOn"))
+	{
+		strcpy(buf, "2ledOn");
+		buf[6]='\0';
+	}
+	if(strstr(buf, "3ledOn"))
+	{
+		strcpy(buf, "3ledOn");
+		buf[6]='\0';
+	}
+	if(strstr(buf, "4ledOn"))
+	{
+		strcpy(buf, "4ledOn");
+		buf[6]='\0';
+	}
+}
 
 void *threadProc(void *arg)
 {
@@ -32,91 +120,7 @@ void *threadProc(void *arg)
 		// char tbuf[1024];
 		// strncpy(tbuf, buf, 15);
 		// printf("tbuf : %s\n", tbuf);
-		if(strstr(buf, "1personIn"))
-		{
-			strcpy(buf, "1personIn");
-			buf[9]='\0';
-		}
-		if(strstr(buf, "1personOut"))
-		{
-			strcpy(buf, "1personOut");
-			buf[10]='\0';
-		}
-		
-		if(strstr(buf, "2personIn"))
-		{
-			strcpy(buf, "2personIn");
-			buf[9]='\0';
-		}
-		if(strstr(buf, "2personOut"))
-		{
-			strcpy(buf, "2personOut");
-			buf[10]='\0';
-		}
-		
-		if(strstr(buf, "3personIn"))
-		{
-			strcpy(buf, "3personIn");
-			buf[9]='\0';
-		}
-		if(strstr(buf, "3personOut"))
-		{
-			strcpy(buf, "3personOut");
-			buf[10]='\0';
-		}
-
-		if(strstr(buf, "4personIn"))
-		{
-			strcpy(buf, "4personIn");
-			buf[9]='\0';
-		}
-		if(strstr(buf, "4personOut"))
-		{
-			strcpy(buf, "4personOut");
-			buf[10]='\0';
-		}
-		
-		if(strstr(buf, "1turnOff"))
-		{
-			strcpy(buf, "1turnOff");
-			buf[8]='\0';
-		}
-		if(strstr(buf, "2turnOff"))
-		{
-			strcpy(buf, "2turnOff");
-			buf[8]='\0';
-		}
-		if(strstr(buf, "3turnOff"))
-		{
-			strcpy(buf, "3turnOff");
-			buf[8]='\0';
-		}
-		if(strstr(buf, "4turnOff"))
-		{
-			strcpy(buf, "4turnOff");
-			buf[8]='\0';
-		}
-
-		if(strstr(buf, "1ledOn"))
-		{
-			strcpy(buf, "1ledOn");
-			buf[6]='\0';
-		}
-		if(strstr(buf, "2ledOn"))
-		{
-			strcpy(buf, "2ledOn");
-			buf[6]='\0';
-		}
-		if(strstr(buf, "3ledOn"))
-		{
-			strcpy(buf, "3ledOn");
-			buf[6]='\0';
-		}
-		if(strstr(buf, "4ledOn"))
-		{
-			strcpy(buf, "4ledOn");
-			buf[6]='\0';
-		}
+		httpToCommand(buf);
 		sCommand(buf);
 		
 		// if( !strcmp(tbuf, " PUT / HTTP/1.1")){
